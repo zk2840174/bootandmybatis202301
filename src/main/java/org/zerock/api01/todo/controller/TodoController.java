@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.api01.common.dto.PageRequestDTO;
+import org.zerock.api01.common.dto.PageResponseDTO;
+import org.zerock.api01.todo.dto.TodoDTO;
+import org.zerock.api01.todo.service.TodoService;
 
 @RestController
 @Log4j2
@@ -14,11 +17,17 @@ import org.zerock.api01.common.dto.PageRequestDTO;
 @RequestMapping("api/todos/")
 public class TodoController {
 
+    private final TodoService todoService;
 
     @GetMapping("list")
-    public String[] getList(PageRequestDTO pageRequestDTO){
+    public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) {
         log.info(pageRequestDTO);
-        return new String[]{"AAA","BBB","CCC"};
+
+        PageResponseDTO<TodoDTO> result = todoService.getList(pageRequestDTO);
+
+        return result;
+
     }
+
 
 }

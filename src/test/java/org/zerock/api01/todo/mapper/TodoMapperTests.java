@@ -24,5 +24,9 @@ public class TodoMapperTests {
 
         List<TodoDTO> dtoList = todoMapper.list(pageRequestDTO);
 
+        int count = todoMapper.getCount(pageRequestDTO);
+
+        log.info("COUNT: " + count);
+
     }
 }
